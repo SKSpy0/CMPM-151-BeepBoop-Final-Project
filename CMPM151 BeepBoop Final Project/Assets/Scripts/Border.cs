@@ -15,13 +15,4 @@ public class Border : MonoBehaviour
     {
         
     }
-
-    public void OnCollisionEnter2D(Collision2D other)
-    {
-        Debug.Log("collision Detected");
-        if(other.gameObject.CompareTag("Bullet"))
-        {
-            Destroy(other.gameObject);
-        }
-    }
 }

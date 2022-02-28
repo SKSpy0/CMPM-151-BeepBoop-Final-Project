@@ -6,11 +6,14 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 10;
 
+    [SerializeField] private int playerHealth = 100;
     [SerializeField] private GameObject Pbullet;
     [SerializeField] private Transform bulletSpawn;
 
     [SerializeField] private float cooldownDuration = 0.1f;
     private float cooldown;
+
+    
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +41,11 @@ public class PlayerMovement : MonoBehaviour
         {
             cooldown -= Time.deltaTime;
         }
+
+        if(playerHealth <= 0)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     void Shoot()
@@ -47,5 +55,10 @@ public class PlayerMovement : MonoBehaviour
             Instantiate(Pbullet,bulletSpawn.transform.position,Quaternion.identity);
             cooldown = cooldownDuration;
         }
+    }
+
+    public void takeDamage(int dmg)
+    {
+        playerHealth -= dmg;
     }
 }
