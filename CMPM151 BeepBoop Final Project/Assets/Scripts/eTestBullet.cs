@@ -7,7 +7,7 @@ public class eTestBullet : eBulletBase
     public override void move()
     {
         // get inital vector
-        Vector3 moveVector = this.gameObject.transform.up;
+        Vector3 moveVector = -this.gameObject.transform.up;
         // normalize
         moveVector.Normalize();
         // multiply by movespeed

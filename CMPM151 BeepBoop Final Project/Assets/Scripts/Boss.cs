@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class Boss : MonoBehaviour
 {
+    public GameObject player;
     public int bossHealth = 100;
+    public float bulletCooldown;
+    private float bulletTimer;
 
     [SerializeField] private GameObject Bullet1;
     //[SerializeField] private GameObject Bullet2;
@@ -17,7 +20,7 @@ public class Boss : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        bulletTimer = bulletCooldown;
     }
 
     void Update()
@@ -45,11 +48,22 @@ public class Boss : MonoBehaviour
         }
 
         Debug.Log("Audio Spectrum Data:");
-        Debug.Log(aveMag[0]);
+        Debug.Log("aveMag 0: " + aveMag[0]);
+        Debug.Log("aveMag 1: " + aveMag[1]);
 
-        if(aveMag[0] > 5){
-            Shoot(Bullet1,new Vector3(this.transform.position.x+Random.Range(-10,10),this.transform.position.y,0), Quaternion.Euler(new Vector3(0, 0, Random.Range(170,190))));
+
+
+        if(bulletTimer <= 0){
+            if(aveMag[0] > 10){
+                Vector3 bulletSpawnLocation = new Vector3(this.transform.position.x + Random.Range(-10.0f, 10.0f), this.transform.position.y, 0);
+                Vector3 bulletDirectionToPlayer = player.GetComponent<Transform>().position - bulletSpawnLocation;
+                Quaternion bulletAngle = Quaternion.Euler(bulletDirectionToPlayer);
+                Shoot(Bullet1, bulletSpawnLocation, bulletAngle);
+            }
+            bulletTimer = bulletCooldown;
         }
+        bulletTimer -= Time.deltaTime;
+        //Debug.Log("Bullet Timer : " + bulletTimer);
     }
     // Update is called once per frame
     void FixedUpdate()
