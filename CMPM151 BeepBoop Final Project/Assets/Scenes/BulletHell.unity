@@ -1009,6 +1009,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61cbbcd79b8f9d246bb552cb5f90388f, type: 3}
+--- !u!1 &1650623593 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4732660406551409996, guid: 61cbbcd79b8f9d246bb552cb5f90388f, type: 3}
+  m_PrefabInstance: {fileID: 1518092410}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2016720837
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1062,6 +1067,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6589067029621354663, guid: 05d36ae5a9c75e847bf727739e5069c1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7653485295765434629, guid: 05d36ae5a9c75e847bf727739e5069c1, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1650623593}
+    - target: {fileID: 7653485295765434629, guid: 05d36ae5a9c75e847bf727739e5069c1, type: 3}
+      propertyPath: bulletCooldown
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 7653485295765434629, guid: 05d36ae5a9c75e847bf727739e5069c1, type: 3}
+      propertyPath: numberOfBullets
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
