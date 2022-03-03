@@ -1,6 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+//************** use UnityOSC namespace...
+using UnityOSC;
+//*************
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -13,12 +17,18 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float cooldownDuration = 0.1f;
     private float cooldown;
 
-    
+    public Text countText;
+
+    //************* Need to setup this server dictionary...
+  	Dictionary<string, ServerLog> servers = new Dictionary<string, ServerLog> ();
+  	//*************
 
     // Start is called before the first frame update
     void Start()
     {
-        cooldown = 0;
+      //************* Instantiate the OSC Handler...
+  	  OSCHandler.Instance.Init ();
+      cooldown = 0;
     }
 
     // Update is called once per frame
@@ -32,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
         moveVector *= moveSpeed * Time.deltaTime;
         // apply to character
         this.transform.position += moveVector;
-    
+
         if(Input.GetButton("Jump"))
         {
             Shoot();
@@ -46,6 +56,24 @@ public class PlayerMovement : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+        //************* Routine for receiving the OSC...
+    		OSCHandler.Instance.UpdateLogs();
+    		Dictionary<string, ServerLog> servers = new Dictionary<string, ServerLog>();
+    		servers = OSCHandler.Instance.Servers;
+
+    		foreach (KeyValuePair<string, ServerLog> item in servers) {
+    			// If we have received at least one packet,
+    			// show the last received from the log in the Debug console
+    			if (item.Value.log.Count > 0) {
+    				int lastPacketIndex = item.Value.packets.Count - 1;
+
+    				//get address and data packet
+    				countText.text = item.Value.packets [lastPacketIndex].Address.ToString ();
+    				countText.text += item.Value.packets [lastPacketIndex].Data [0].ToString ();
+
+    			}
+    		}
     }
 
     void Shoot()
@@ -54,6 +82,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Instantiate(Pbullet,bulletSpawn.transform.position,Quaternion.identity);
             cooldown = cooldownDuration;
+            OSCHandler.Instance.SendMessageToClient("pd", "/unity/gunSound", 1);
         }
     }
 
