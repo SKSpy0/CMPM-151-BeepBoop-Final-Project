@@ -44,8 +44,8 @@ public class Boss : MonoBehaviour
             aveMag[i] *= 10000;
         }
 
-        Debug.Log("Audio Spectrum Data:");
-        Debug.Log(aveMag[0]);
+        //Debug.Log("Audio Spectrum Data:");
+        //Debug.Log(aveMag[0]);
 
         if(aveMag[0] > 5){
             Shoot(Bullet1,new Vector3(this.transform.position.x+Random.Range(-10,10),this.transform.position.y,0), Quaternion.Euler(new Vector3(0, 0, Random.Range(170,190))));
