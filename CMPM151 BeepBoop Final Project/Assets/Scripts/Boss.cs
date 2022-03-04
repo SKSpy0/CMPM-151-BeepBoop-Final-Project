@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//************** use UnityOSC namespace...
+using UnityOSC;
+//*************
 
 public class Boss : MonoBehaviour
 {
@@ -16,7 +19,7 @@ public class Boss : MonoBehaviour
     //[SerializeField] private GameObject Bullet5;
     //[SerializeField] private GameObject Bullet6;
 
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -73,7 +76,9 @@ public class Boss : MonoBehaviour
         if(bossHealth <= 0)
         {
             Destroy(this.gameObject);
+            OSCHandler.Instance.SendMessageToClient("pd", "/unity/bossBoom", 1);
         }
+
     }
 
     public void takeDamage(int dmg)
