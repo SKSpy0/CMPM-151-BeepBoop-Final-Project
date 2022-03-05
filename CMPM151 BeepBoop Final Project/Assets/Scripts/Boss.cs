@@ -83,6 +83,7 @@ public class Boss : MonoBehaviour
 
     public void takeDamage(int dmg)
     {
+        OSCHandler.Instance.SendMessageToClient("pd", "/unity/bossDamaged", 1);
         bossHealth -= dmg;
     }
 
