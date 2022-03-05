@@ -9,8 +9,11 @@ public class Boss : MonoBehaviour
 {
     public GameObject player;
     public int bossHealth = 100;
+    private int bossMaxHealth;
     public float bulletCooldown;
     private float bulletTimer;
+
+    [SerializeField] private AudioSource BGM;
 
     [SerializeField] private GameObject Bullet1;
     //[SerializeField] private GameObject Bullet2;
@@ -19,15 +22,25 @@ public class Boss : MonoBehaviour
     //[SerializeField] private GameObject Bullet5;
     //[SerializeField] private GameObject Bullet6;
 
+    [SerializeField] private GameObject Square0;
+    [SerializeField] private GameObject Square1;
+    [SerializeField] private GameObject Square2;
+    [SerializeField] private GameObject Square3;
+    [SerializeField] private GameObject Square4;
+    [SerializeField] private GameObject Square5;
+    [SerializeField] private GameObject Square6;
+    [SerializeField] private GameObject Square7;
 
     // Start is called before the first frame update
     void Start()
     {
         bulletTimer = bulletCooldown;
+        bossMaxHealth = bossHealth;
     }
 
     void Update()
     {
+        BGM.pitch = ((1f-((float)bossHealth/(float)bossMaxHealth))*0.75f)+0.75f;
         //create audio sample data
         int numPartitions = 8;
         float[] aveMag = new float[numPartitions];
@@ -54,6 +67,15 @@ public class Boss : MonoBehaviour
         Debug.Log("aveMag 0: " + aveMag[0]);
         Debug.Log("aveMag 1: " + aveMag[1]);
 
+        // some data visualization tests here - David
+        Square0.gameObject.transform.localScale = new Vector3(0.5f,aveMag[0],1);
+        Square1.gameObject.transform.localScale = new Vector3(0.5f,aveMag[1],1);
+        Square2.gameObject.transform.localScale = new Vector3(0.5f,aveMag[2],1);
+        Square3.gameObject.transform.localScale = new Vector3(0.5f,aveMag[3],1);
+        Square4.gameObject.transform.localScale = new Vector3(0.5f,aveMag[4],1);
+        Square5.gameObject.transform.localScale = new Vector3(0.5f,aveMag[5],1);
+        Square6.gameObject.transform.localScale = new Vector3(0.5f,aveMag[6],1);
+        Square7.gameObject.transform.localScale = new Vector3(0.5f,aveMag[7],1);
 
 
         if(bulletTimer <= 0){
