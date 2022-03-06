@@ -63,9 +63,9 @@ public class Boss : MonoBehaviour
             aveMag[i] *= 10000;
         }
 
-        Debug.Log("Audio Spectrum Data:");
+        /*Debug.Log("Audio Spectrum Data:");
         Debug.Log("aveMag 0: " + aveMag[0]);
-        Debug.Log("aveMag 1: " + aveMag[1]);
+        Debug.Log("aveMag 1: " + aveMag[1]);*/
 
         // some data visualization tests here - David
         Square0.gameObject.transform.localScale = new Vector3(0.5f,aveMag[0],1);
@@ -78,12 +78,13 @@ public class Boss : MonoBehaviour
         Square7.gameObject.transform.localScale = new Vector3(0.5f,aveMag[7],1);
 
 
+        // bulletSpawning
         if(bulletTimer <= 0){
             if(aveMag[0] > 10){
                 Vector3 bulletSpawnLocation = new Vector3(this.transform.position.x + Random.Range(-10.0f, 10.0f), this.transform.position.y, 0);
-                Vector3 bulletDirectionToPlayer = player.GetComponent<Transform>().position - bulletSpawnLocation;
-                Quaternion bulletAngle = Quaternion.Euler(bulletDirectionToPlayer);
-                Shoot(Bullet1, bulletSpawnLocation, bulletAngle);
+                //Vector3 bulletDirectionToPlayer = bulletSpawnLocation - player.GetComponent<Transform>().position;
+                //Quaternion bulletAngle = Quaternion.Euler(bulletDirectionToPlayer);
+                Shoot(Bullet1, bulletSpawnLocation);
             }
             bulletTimer = bulletCooldown;
         }
@@ -108,8 +109,8 @@ public class Boss : MonoBehaviour
         bossHealth -= dmg;
     }
 
-    void Shoot(GameObject Bullet, Vector3 Location, Quaternion Angle)
+    void Shoot(GameObject Bullet, Vector3 Location)
     {
-        Instantiate(Bullet,Location,Angle);
+        Instantiate(Bullet,Location,Quaternion.identity);
     }
 }
