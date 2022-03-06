@@ -16,20 +16,28 @@ public class Boss : MonoBehaviour
     [SerializeField] private AudioSource BGM;
 
     [SerializeField] private GameObject Bullet1;
-    //[SerializeField] private GameObject Bullet2;
+    [SerializeField] private GameObject Bullet2;
     //[SerializeField] private GameObject Bullet3;
     //[SerializeField] private GameObject Bullet4;
     //[SerializeField] private GameObject Bullet5;
     //[SerializeField] private GameObject Bullet6;
 
-    // [SerializeField] private GameObject Square0;
-    // [SerializeField] private GameObject Square1;
+    [SerializeField] private GameObject Square0;
+    [SerializeField] private GameObject Square1;
     // [SerializeField] private GameObject Square2;
     // [SerializeField] private GameObject Square3;
     // [SerializeField] private GameObject Square4;
     // [SerializeField] private GameObject Square5;
     // [SerializeField] private GameObject Square6;
     // [SerializeField] private GameObject Square7;
+
+    // movement vars
+    bool postiveTravel = true;
+
+    // base beat bullet variables
+    private bool hasFiredBase = false;
+    public bool BaseBulletKill = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -68,8 +76,8 @@ public class Boss : MonoBehaviour
         Debug.Log("aveMag 1: " + aveMag[1]);*/
 
         // some data visualization tests here - David
-        // Square0.gameObject.transform.localScale = new Vector3(0.5f,aveMag[0],1);
-        // Square1.gameObject.transform.localScale = new Vector3(0.5f,aveMag[1],1);
+        Square0.gameObject.transform.localScale = new Vector3(0.5f,aveMag[0],1);
+        Square1.gameObject.transform.localScale = new Vector3(0.5f,aveMag[1],1);
         // Square2.gameObject.transform.localScale = new Vector3(0.5f,aveMag[2],1);
         // Square3.gameObject.transform.localScale = new Vector3(0.5f,aveMag[3],1);
         // Square4.gameObject.transform.localScale = new Vector3(0.5f,aveMag[4],1);
@@ -77,14 +85,42 @@ public class Boss : MonoBehaviour
         // Square6.gameObject.transform.localScale = new Vector3(0.5f,aveMag[6],1);
         // Square7.gameObject.transform.localScale = new Vector3(0.5f,aveMag[7],1);
 
+        
 
         // bulletSpawning
         if(bulletTimer <= 0){
+            BaseBulletKill = false;
             if(aveMag[0] > 10){
-                Vector3 bulletSpawnLocation = new Vector3(this.transform.position.x + Random.Range(-10.0f, 10.0f), this.transform.position.y, 0);
-                //Vector3 bulletDirectionToPlayer = bulletSpawnLocation - player.GetComponent<Transform>().position;
-                //Quaternion bulletAngle = Quaternion.Euler(bulletDirectionToPlayer);
-                Shoot(Bullet1, bulletSpawnLocation);
+                // goal is to focus this on main underlying beat
+                // if need to shoot
+                if(!hasFiredBase){
+                    // then shoot
+                    int shotangle = 0;
+                    for(int i = 0; i < 36; i++)
+                    {
+                        Shoot(Bullet1,new Vector3(this.transform.position.x,this.transform.position.y,0), Quaternion.Euler(new Vector3(0, 0, shotangle)));
+                        shotangle += 10;
+                    }
+                    hasFiredBase = true;
+                }
+                // else carry one
+            }
+            else
+            {
+                // if base drops kill the current wave and ready another
+                BaseBulletKill = true;
+                hasFiredBase = false;
+            }
+            if(aveMag[1] > 10)
+            {
+                // fire a shotgun blast outward
+                int shotangle = 180 - 45;
+                for(int i = 0; i < 10; i++)
+                {
+                    Shoot(Bullet2,new Vector3(this.transform.position.x,this.transform.position.y,0), Quaternion.Euler(new Vector3(0, 0, shotangle)));
+                    shotangle += 10;
+                }
+                
             }
             bulletTimer = bulletCooldown;
         }
@@ -95,6 +131,21 @@ public class Boss : MonoBehaviour
     void FixedUpdate()
     {
         //Shoot(Bullet1,new Vector3(this.transform.position.x+Random.Range(-10,10),this.transform.position.y,0), Quaternion.Euler(new Vector3(0, 0, Random.Range(170,190))));
+        // basic movement
+        float moveSpeed = BGM.pitch;
+        if(this.transform.position.x<=-5)
+        {
+            postiveTravel = true;
+        }
+        if(this.transform.position.x>=5)
+        {
+            postiveTravel = false;
+        }
+        if(!postiveTravel)
+        {
+            moveSpeed*=-1;
+        }
+        this.transform.position += new Vector3(moveSpeed*Time.deltaTime,0,0);
 
         if(bossHealth <= 0)
         {
@@ -110,8 +161,8 @@ public class Boss : MonoBehaviour
         bossHealth -= dmg;
     }
 
-    void Shoot(GameObject Bullet, Vector3 Location)
+    void Shoot(GameObject Bullet, Vector3 Location, Quaternion Angle)
     {
-        Instantiate(Bullet,Location,Quaternion.identity);
+        Instantiate(Bullet,Location,Angle);
     }
 }
