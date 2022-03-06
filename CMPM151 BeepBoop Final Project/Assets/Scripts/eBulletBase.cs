@@ -18,8 +18,8 @@ public class eBulletBase : MonoBehaviour
         player = GameObject.Find("Player");
 
         // create random bullet typing
-        // 0 - 2 = normal speed, straight
-        // 3 - 4 = normal speed, targetted
+        // 0 - 2 = normal speed, straight, big
+        // 3 - 4 = normal speed, targetted, big
         // 5 = faster speed, straight
         // 6 = faster speed, targetted
         int bulletType = Random.Range(0, 6);
@@ -38,6 +38,11 @@ public class eBulletBase : MonoBehaviour
         // assign bullet speed if needed
         if(bulletType >= 5){
             moveSpeed *= 1.5f;
+        }
+        
+        // make bullet bigger if needed
+        if(bulletType <= 2){
+            this.gameObject.transform.localScale = new Vector3(0.4f, 0.4f, 1.0f);
         }
     }
 

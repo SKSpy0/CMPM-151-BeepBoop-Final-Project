@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -128,8 +128,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb38663d7bd368449a1fbbd32592cb2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BossHealth: 100
+  player: {fileID: 0}
+  bossHealth: 100
+  bulletCooldown: 0
+  BGM: {fileID: 0}
   Bullet1: {fileID: 2285839386222102655, guid: 01f85ea322d5bb141927df2421217398, type: 3}
+  Square0: {fileID: 0}
+  Square1: {fileID: 0}
+  Square2: {fileID: 0}
+  Square3: {fileID: 0}
+  Square4: {fileID: 0}
+  Square5: {fileID: 0}
+  Square6: {fileID: 0}
+  Square7: {fileID: 0}
 --- !u!61 &3830895246430731243
 BoxCollider2D:
   m_ObjectHideFlags: 0

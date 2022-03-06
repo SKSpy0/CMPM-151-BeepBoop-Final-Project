@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -130,9 +130,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 1
+  playerHealth: 100
   Pbullet: {fileID: 2957815295523961749, guid: 074ba510d8522b94ba3fd4582364e7ca, type: 3}
   bulletSpawn: {fileID: 4828503542054905192}
   cooldownDuration: 0.1
+  countText: {fileID: 0}
 --- !u!61 &5073161629699227380
 BoxCollider2D:
   m_ObjectHideFlags: 0
