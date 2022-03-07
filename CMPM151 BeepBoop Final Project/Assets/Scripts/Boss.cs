@@ -8,6 +8,7 @@ using UnityOSC;
 public class Boss : MonoBehaviour
 {
     public GameObject player;
+    public HealthBar healthBar;
     public int bossHealth = 100;
     private int bossMaxHealth;
     public float bulletCooldown;
@@ -36,6 +37,7 @@ public class Boss : MonoBehaviour
     {
         bulletTimer = bulletCooldown;
         bossMaxHealth = bossHealth;
+        healthBar.SetMaxHealth(bossMaxHealth);
     }
 
     void Update()
@@ -108,6 +110,7 @@ public class Boss : MonoBehaviour
     {
         OSCHandler.Instance.SendMessageToClient("pd", "/unity/bossDamaged", 1);
         bossHealth -= dmg;
+        healthBar.SetHealth(bossHealth);
     }
 
     void Shoot(GameObject Bullet, Vector3 Location)

@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     private float cooldown;
 
     public Text countText;
+    public HealthBar healthBar;
 
     //************* Need to setup this server dictionary...
   	Dictionary<string, ServerLog> servers = new Dictionary<string, ServerLog> ();
@@ -29,6 +30,8 @@ public class PlayerMovement : MonoBehaviour
       //************* Instantiate the OSC Handler...
   	  OSCHandler.Instance.Init ();
       cooldown = 0;
+
+      healthBar.SetMaxHealth(playerHealth);
     }
 
     // Update is called once per frame
@@ -89,5 +92,7 @@ public class PlayerMovement : MonoBehaviour
     public void takeDamage(int dmg)
     {
         playerHealth -= dmg;
+
+        healthBar.SetHealth(playerHealth);
     }
 }
