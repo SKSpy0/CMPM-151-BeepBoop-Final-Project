@@ -1961,7 +1961,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2985189080115289943, guid: 61cbbcd79b8f9d246bb552cb5f90388f, type: 3}
       propertyPath: playerHealth
-      value: 300
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 2985189080115289943, guid: 61cbbcd79b8f9d246bb552cb5f90388f, type: 3}
       propertyPath: cooldownDuration
