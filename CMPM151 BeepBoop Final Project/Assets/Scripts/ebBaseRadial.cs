@@ -19,9 +19,5 @@ public class ebBaseRadial : eBulletBase
         this.transform.position += moveVector;
 
         Boss = GameObject.Find("BossEnemy");
-        if(Boss.GetComponent<Boss>().BaseBulletKill)
-        {
-            Destroy(this.gameObject);
-        }
     }
 }

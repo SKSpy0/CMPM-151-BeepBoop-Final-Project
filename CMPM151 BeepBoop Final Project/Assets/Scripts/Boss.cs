@@ -37,7 +37,6 @@ public class Boss : MonoBehaviour
 
     // base beat bullet variables
     private bool hasFiredBase = false;
-    public bool BaseBulletKill = false;
 
 
     // Start is called before the first frame update
@@ -78,8 +77,8 @@ public class Boss : MonoBehaviour
         Debug.Log("aveMag 1: " + aveMag[1]);*/
 
         // some data visualization tests here - David
-        Square0.gameObject.transform.localScale = new Vector3(0.5f,aveMag[0],1);
-        Square1.gameObject.transform.localScale = new Vector3(0.5f,aveMag[1],1);
+        // Square0.gameObject.transform.localScale = new Vector3(0.5f,aveMag[0],1);
+        // Square1.gameObject.transform.localScale = new Vector3(0.5f,aveMag[1],1);
         // Square2.gameObject.transform.localScale = new Vector3(0.5f,aveMag[2],1);
         // Square3.gameObject.transform.localScale = new Vector3(0.5f,aveMag[3],1);
         // Square4.gameObject.transform.localScale = new Vector3(0.5f,aveMag[4],1);
@@ -87,11 +86,9 @@ public class Boss : MonoBehaviour
         // Square6.gameObject.transform.localScale = new Vector3(0.5f,aveMag[6],1);
         // Square7.gameObject.transform.localScale = new Vector3(0.5f,aveMag[7],1);
 
-        
 
         // bulletSpawning
         if(bulletTimer <= 0){
-            BaseBulletKill = false;
             if(aveMag[0] > 10){
                 // goal is to focus this on main underlying beat
                 // if need to shoot
@@ -110,7 +107,6 @@ public class Boss : MonoBehaviour
             else
             {
                 // if base drops kill the current wave and ready another
-                BaseBulletKill = true;
                 hasFiredBase = false;
             }
             if(aveMag[1] > 10)

@@ -1730,7 +1730,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1309616422
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1960,6 +1960,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2985189080115289943, guid: 61cbbcd79b8f9d246bb552cb5f90388f, type: 3}
+      propertyPath: playerHealth
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 2985189080115289943, guid: 61cbbcd79b8f9d246bb552cb5f90388f, type: 3}
       propertyPath: cooldownDuration
       value: 0.5
       objectReference: {fileID: 0}
@@ -1970,6 +1974,14 @@ PrefabInstance:
     - target: {fileID: 5578648006229294054, guid: 61cbbcd79b8f9d246bb552cb5f90388f, type: 3}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5578648006229294054, guid: 61cbbcd79b8f9d246bb552cb5f90388f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5578648006229294054, guid: 61cbbcd79b8f9d246bb552cb5f90388f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 5578648006229294054, guid: 61cbbcd79b8f9d246bb552cb5f90388f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2139,7 +2151,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1774062792
 SpriteRenderer:
   m_ObjectHideFlags: 0
