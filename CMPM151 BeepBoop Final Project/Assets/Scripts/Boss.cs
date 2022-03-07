@@ -147,8 +147,8 @@ public class Boss : MonoBehaviour
 
         if(bossHealth <= 0)
         {
-            Destroy(this.gameObject);
             OSCHandler.Instance.SendMessageToClient("pd", "/unity/bossBoom", 1);
+            Destroy(this.gameObject);
         }
 
     }
