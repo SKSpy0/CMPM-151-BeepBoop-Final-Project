@@ -149,6 +149,7 @@ public class Boss : MonoBehaviour
         {
             BGM.pitch = 0;
             OSCHandler.Instance.SendMessageToClient("pd", "/unity/bossBoom", 1);
+            OSCHandler.Instance.SendMessageToClient("pd", "/unity/gameWon", 1);
             Destroy(this.gameObject);
         }
 
