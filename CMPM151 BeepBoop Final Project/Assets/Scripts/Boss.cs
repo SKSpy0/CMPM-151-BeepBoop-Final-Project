@@ -118,7 +118,7 @@ public class Boss : MonoBehaviour
                     Shoot(Bullet2,new Vector3(this.transform.position.x,this.transform.position.y,0), Quaternion.Euler(new Vector3(0, 0, shotangle)));
                     shotangle += 10;
                 }
-                
+
             }
             bulletTimer = bulletCooldown;
         }

@@ -57,6 +57,7 @@ public class PlayerMovement : MonoBehaviour
 
         if(playerHealth <= 0)
         {
+            OSCHandler.Instance.SendMessageToClient("pd", "/unity/gameLost", 1);
             Destroy(this.gameObject);
         }
 
@@ -94,5 +95,6 @@ public class PlayerMovement : MonoBehaviour
         playerHealth -= dmg;
 
         healthBar.SetHealth(playerHealth);
+        OSCHandler.Instance.SendMessageToClient("pd", "/unity/playerDamaged", 1);
     }
 }
