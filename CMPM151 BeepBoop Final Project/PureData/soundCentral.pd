@@ -1,4 +1,4 @@
-#N canvas 31 62 2383 1277 12;
+#N canvas 0 0 1280 720 12;
 #X obj 245 1830 tabwrite~ c;
 #X obj 139 1300 bng 15 250 50 0 empty empty oneshot 0 -6 1 8 -262144
 -1 -1;
